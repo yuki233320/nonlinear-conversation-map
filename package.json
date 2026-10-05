@@ -1,0 +1,55 @@
+{
+  "name": "dsh-synapse",
+  "version": "1.3.2",
+  "description": "非线性对话地图：用于 DeepSeek Harness 的可视化会话、追问和分支地图插件。",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "attachments.js",
+    "client.js",
+    "app.js",
+    "deepseek-mark.svg",
+    "styles.css",
+    "docs",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE",
+    "preview-server.js",
+    "app-core.js",
+    "panels.js",
+    "panels.css",
+    "search.js",
+    "search.css",
+    "session-canvas.js",
+    "session-canvas.css"
+  ],
+  "scripts": {
+    "build": "node --check index.js && node --check client.js && node --check app.js && node --check preview-server.js",
+    "prepare": "pnpm run build",
+    "test": "node --test test/*.test.js"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "license": "MIT",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime"
+      ],
+      "immediately": false
+    }
+  },
+  "displayName": "非线性对话地图"
+}

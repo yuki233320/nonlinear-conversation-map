@@ -1,0 +1,29 @@
+/* This layer never changes card geometry, selection styles, or hit targets. */
+.synapse-shell .thread-card.synapse-session-rgb::before,
+.synapse-shell .thread-card.synapse-session-static::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  z-index: 4;
+  border-radius: 10px;
+  pointer-events: none;
+}
+.synapse-shell .thread-card.synapse-session-rgb::before {
+  animation: synapse-session-rgb var(--synapse-rgb-duration, 1500ms) ease-in-out var(--synapse-rgb-delay, 0ms) 1 both;
+}
+.synapse-shell .thread-card.synapse-session-static::before {
+  box-shadow: 0 0 0 1px rgba(91, 141, 239, .38), 0 0 12px 3px rgba(91, 141, 239, .13);
+}
+.synapse-shell .connectors .session-branch-connector { stroke-dasharray: 5 3; }
+@keyframes synapse-session-rgb {
+  0%, 100% { opacity: 0; box-shadow: 0 0 0 1px rgba(239, 91, 116, .2), 0 0 12px 3px rgba(239, 91, 116, .1); }
+  16% { opacity: .85; box-shadow: 0 0 0 2px rgba(239, 91, 116, .65), 0 0 17px 5px rgba(239, 91, 116, .28); }
+  48% { opacity: .85; box-shadow: 0 0 0 2px rgba(75, 181, 126, .65), 0 0 17px 5px rgba(75, 181, 126, .28); }
+  78% { opacity: .85; box-shadow: 0 0 0 2px rgba(91, 141, 239, .65), 0 0 17px 5px rgba(91, 141, 239, .28); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .synapse-shell .thread-card.synapse-session-rgb::before {
+    animation: none;
+    box-shadow: 0 0 0 1px rgba(91, 141, 239, .38), 0 0 12px 3px rgba(91, 141, 239, .13);
+  }
+}
